@@ -1,0 +1,1367 @@
+    /* ==========================================================================
+    BASE RESET & GLOBAL STYLES
+    ========================================================================== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Helvetica Rounded', sans-serif;
+        font-weight:30;
+        scroll-behavior: smooth;
+        user-select: none;
+    }
+
+    /* ==========================================================================
+    THEME VARIABLES
+    ========================================================================== */
+    /* Dark mode (default theme) */
+    :root {
+        --bg-color: #1a1a40;               /* Main background color */
+        --container-bg: #3E348D;           /* Container background color */
+        --context-menu: #1c1b1a;          /* Context menu background color */
+        --text-color: white;               /* Default text color */
+        --timer-bg: #e9b20ef8;             /* Timer card background */
+        --task-bg: #ff5722;                /* Task item background */
+        --task-hover: #e64a19;             /* Task item hover state */
+        --timer-btn-bg: #ff5722;           /* Timer button background */
+        --timer-btn-disabled: #ff5622a8;        /* Timer button disabled state */
+        --checkbox-bg: white;              /* Checkbox background */
+        --checkbox-hover: #a0a0a0;         /* Checkbox hover state */
+        --nav-hover: white;                /*Navigation hover color*/
+        --checkbox-ticked-hover: #33a137;         /* Checkbox hover state */
+        --language-toggle: #7a7a7a;        /* Language toggle color */
+        --language-toggle-background: rgba(255, 255, 255, 0.1); /* Language toggle background */
+        --scrollbar: #1a1a40;              /* Scrollbar track color */
+        --scrollbar-thumb: #3E348D;        /* Scrollbar thumb color */
+        --dashboard-outline: #3E348D;      /* Mode dashboard outline */
+        --item-hover: rgba(63, 63, 63, 0.45);
+        --text-input: #ffffff33;
+        --task-completed: #d6491e7c;
+        --activity-container: rgba(0, 0, 0, 0.1);
+        --box-shadow-color: #0000004d;
+        --chart-bar: #ffffff1a;
+    }
+
+    /* Light mode theme variables */
+    .light-mode {
+        --bg-color: #f9f2e3;               /* Light mode main background */
+        --container-bg: #f9f2e3;           /* Light mode container background */
+        --context-menu: #f3e8db;          /*  Light Context menu background color */
+        --text-color: #1c1b1a;             /* Light mode text color */
+        --timer-bg: #F4B802;               /* Light mode timer background */
+        --task-bg: #ff5722;                /* Light mode task background (unchanged) */
+        --task-hover: #e64a19;             /* Light mode task hover (unchanged) */
+        --nav-hover: #1c1b1a;
+        --timer-btn-bg: #ff5722;           /* Light mode button background (unchanged) */
+        --timer-btn-hover: #e64a19;        /* Light mode button hover (unchanged) */
+        --timer-btn-disabled: #ff5622a8;        /* Light mode button disabled (unchanged) */
+        --checkbox-bg: #f0f0f0;            /* Light mode checkbox background */
+        --language-toggle: #afaeae;        /* Light mode language toggle */
+        --language-toggle-background: rgba(97, 92, 92, 0.1); /* Light mode toggle background */
+        --scrollbar: #f5f5f5;              /* Light mode scrollbar track */
+        --scrollbar-thumb: #a8a7ad;        /* Light mode scrollbar thumb */
+        --dashboard-outline: #1c1b1a;      /* Light mode dashboard outline */
+        --item-hover: rgba(211, 211, 211, 0.592);
+        --task-completed: #d6491e7c;
+        --chart-bar: #b4b4b46c;
+        
+        /* Sign in Menu */
+        --text-input: darkgray; /*Input border to enter email */
+    }
+
+    /* ==========================================================================
+    LAYOUT & STRUCTURE
+    ========================================================================== */
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .section {
+        width: 100%;
+        min-height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        width: 1000px;
+        min-width: 1000px;
+        max-width: 90vw;
+        background-color: var(--container-bg);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 25px #0000004d;
+        margin: 40px 0;
+        transition: background-color 0.3s;
+        border: 1px solid var(--dashboard-outline);
+        border-radius: 30px;
+        border-width: 3px;
+    }
+
+    .main-content {
+        display: flex;
+        gap: 30px;
+    }
+
+    /* ==========================================================================
+    NAVIGATION
+    ========================================================================== */
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 30px;
+    }
+
+    /* Logo section styles */
+    .logo-section {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 24px;
+        transition: color 0.3s;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .logo img:hover {
+        color: var(--nav-hover);
+        transform: scale(1.1);
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+        margin-right: 12px;
+        transform: 0;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    /* Navigation links */
+    .nav-links {
+        display: flex;
+        gap: 30px;
+    }
+
+    .nav-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 17px;
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+
+    .nav-links a, .button {
+        display: inline-block;
+        text-align: center;
+    }
+
+
+    /* Button style for navigation links */
+    .button {
+        color: rgb(255, 255, 255);
+        padding: 2px 6px 2px 6px;
+        font-size: 17px;
+        font-weight: 700px;
+        background: none;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button::after {
+        content: '';
+        margin-top: 2px;
+        height: 2px;
+        width: 0%;
+        background-color: var(--nav-hover);
+        display: block;
+        transition: .5s ease-in-out;
+    }
+
+    .button:hover:after {
+        content: '';
+        margin-top: 2px;
+        height: 2px;
+        width: 100%;
+        background-color: var(--nav-hover);
+        display: block;
+    }
+
+    /* ==========================================================================
+    LANGUAGE SELECTOR
+    ========================================================================== */
+    .language-selector {
+        margin-left: 15px;
+        margin-right: 15px;
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .language-display {
+        border: 1px solid var(--language-toggle);
+        padding: 6px 12px;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: var(--language-toggle-background);
+        display: flex;
+        align-items: center;
+        min-width: 90px; /* Minimum width */
+        width: 90px; /* Fixed width */
+        height: 36px; /* Fixed height */
+        justify-content: center; /* Center content */
+        box-sizing: border-box; /* Include padding in width calculation */
+        overflow: hidden; /* Hide overflow text */
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    .language-flag {
+        width: 18px;
+        height: 12px;
+        margin-right: 8px;
+        flex-shrink: 0; /* Prevent flag from shrinking */
+    }
+
+    .language-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--container-bg);
+        border-radius: 4px;
+        box-shadow: 0 4px 12px #00000033;
+        width: 140px;
+        z-index: 10;
+        display: none;
+        transition: background-color 0.3s;
+    }
+
+    .language-option {
+        padding: 8px 12px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        display: flex;
+        align-items: center;
+        height: 36px; /* Consistent height for options */
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+
+    }
+
+    .language-option:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .language-selector:hover .language-options {
+        display: block;
+    }
+
+    /* ==========================================================================
+    THEME TOGGLE SWITCH
+    ========================================================================== */
+
+    .theme-toggle {
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .toggle-icon {
+        width: 18px;
+        height: 18px;
+        margin: 0 8px;
+    }
+
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+    }
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #30265e;
+        border-radius: 34px;
+        transition: .4s;
+    }
+
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        border-radius: 50%;
+        transition: .4s;
+    }
+
+    input:checked + .toggle-slider {
+        background-color: #e4dcc3;
+    }
+
+    input:checked + .toggle-slider:before {
+        transform: translateX(26px);
+    }
+
+    /* ==========================================================================
+    TIMER SECTION
+    ========================================================================== */
+    .timer-section {
+        flex: 1;
+    }
+
+    .timer-adjust-buttons {
+        padding-left: 250vh;
+    }
+
+    .adjust-btn {
+        border: none;
+        border-radius: 5px;
+        color: black;
+        padding: 2px 8px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+
+    .timer-card {
+        background-color: var(--timer-bg);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        height: 510px; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        transition: background-color 0.3s;
+        min-width: 300px;
+        position: relative; /* Added to position the gear icon */
+    }
+
+    .timer-title {
+        color: var(--text-color);
+        margin-bottom: 10px;
+        font-size: 28px;
+        transition: color 0.3s;
+        padding-top: 20px;
+    }
+
+    .timer-display {
+        font-size: 110px;
+        font-weight: bold;
+        color: var(--text-color);
+        transition: color 0.3s;
+        margin-bottom: 60px;
+        margin-top: 55px;
+    }
+
+    .timer-mode-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    
+    .timer-mode-btn {
+        background-color: rgba(0, 0, 0, 0.062);
+        outline-style: dashed;
+        outline-width: 2px;
+        outline-color: rgba(255, 255, 255, 0.438);
+        color: var(--text-color);
+        border: none;
+        border-radius: 10px;
+        padding: 8px 12px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.3s, outline 0.3s;
+    }
+
+    .timer-mode-btn.active {
+        background-color: var(--timer-btn-bg);
+        font-weight: bold;
+        outline: none; /* Remove the outline when active */
+    }
+
+
+    .timer-mode-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .timer-mode-btn.active {
+        background-color: var(--timer-btn-bg);
+        font-weight: bold;
+    }
+
+    /* Timer control buttons */
+    .timer-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 15px 0;
+        padding-bottom: 30px;
+    }
+
+    .timer-btn {
+        background-color: var(--timer-btn-bg);
+        color: var(--text-color);
+        border: none;
+        border-radius: 10px;
+        padding: 14px 10px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 18px;
+        transform: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        white-space: nowrap; 
+        overflow: hidden; 
+        min-width: 120px;
+        width: 120px; 
+        height: 52px; 
+        box-sizing: border-box;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .timer-btn:hover:not(:disabled) {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .timer-btn:disabled {
+        background-color: var(--timer-btn-disabled);
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .timer-title, .tasks-title {
+        height: 40px; 
+    }
+
+    .fa.fa-gear {
+        font-size: 30px;
+        position: absolute;
+        top: 10px; 
+        right: 10px; 
+        z-index: 1;
+        cursor: pointer;
+        padding: 20px;
+        transition: text-shadow 0.8s ease;
+    }
+
+    .rotate-scale-up:hover {
+        -webkit-animation: rotate-scale-up .4s linear both;
+        animation: rotate-scale-up .4s linear both;
+    }
+
+    @keyframes rotate-scale-up {
+        0% {
+            -webkit-transform: scale(1) rotateZ(0);
+            transform: scale(1) rotateZ(0);
+            text-shadow: 0 0 0 #0000004d; /* Start with no shadow */
+        }
+        50% {
+            -webkit-transform: scale(1.2) rotateZ(30deg);
+            transform: scale(1.1) rotateZ(60deg);
+            text-shadow: 0 0 5px #0000004d; /* Intermediate shadow */
+        }
+        100% {
+            -webkit-transform: scale(1) rotateZ(60deg);
+            transform: scale(1) rotateZ(90deg);
+            text-shadow: 0 0 5px #0000004d; /* Final shadow */
+        }
+    }
+    /* ==========================================================================
+    TASKS SECTION
+    ========================================================================== */
+    .tasks-section {
+        flex: 1;
+    }
+
+    .tasks-card {
+        background-color: var(--timer-bg);
+        border-radius: 20px;
+        padding: 30px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: background-color 0.3s;
+    }
+
+    .tasks-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .tasks-title {
+        color: var(--text-color);
+        font-size: 28px;
+        transition: color 0.3s;
+    }
+
+    .task-container-line {
+        display: inline-block;
+        padding-top: 8px;
+        padding-bottom: 2px;
+    }
+
+    .task-container-line::after {
+        content: '';
+        height: 3px;
+        background: var(--text-color);
+        border-radius: 5px;
+        display: block;
+    }
+
+    .add-task-btn {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-radius: 15px;
+        color: var(--text-color);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 16px;
+        transition: background-color 0.2s, color 0.3s;
+        white-space: nowrap;
+        width: 300px; 
+        height: 44px; 
+        box-sizing: border-box;
+        overflow: hidden;
+        transform: 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .add-task-container {
+        padding-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-task-btn:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .add-icon {
+        background-color: white;
+        color: var(--timer-bg);
+        border-radius: 50%;
+        width: 26px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        transition: color 0.3s;
+        min-width: 26px;
+        font-size: 24px;  /* Adjust size of the plus sign */
+        padding-bottom: 4.5px; /* Small adjustment to move the + down slightly */
+        padding-left: 1.2px;
+        padding-right: 1px;
+        padding-top: .5px;
+    }
+
+    /* Tasks container and scrolling */
+    .tasks-container {
+        flex-grow: 1;
+        overflow-y: auto;
+        max-height: 320px;
+        min-height: 320px;
+        background-color: #d19e04b6;
+        border-radius: 8px;
+        padding: 8px;
+    }
+
+    /* Individual task styling */
+    .task-item {
+        background-color: var(--task-bg);
+        border-radius: 15px;
+        padding: 14px;
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-color);
+        cursor: grab;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .task-item.completed {
+        order: 1;
+        background-color: var(--task-completed);
+    }
+
+    .task-item.dragging {
+        opacity: 0.9;
+    }
+
+    .task-check {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    /* Task text styling */
+    .task-text {
+        flex-grow: 1;
+        user-select: none;
+        transition: all 0.2s ease;
+        font-size:large;
+    }
+
+    .task-item.completed .task-text {
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+        text-decoration-color: gray;
+        opacity: 0.4;
+    }
+
+    .task-options {
+        cursor: pointer;
+        font-size: 24px;
+        position: relative;
+        padding: 5px;
+        font-weight: bold;
+    }
+
+    .context-menu {
+        position: fixed; /* Change to fixed positioning */
+        background-color: var(--context-menu);
+        border-radius: 5px;
+        min-width: 150px;
+        display: none;
+        overflow: hidden;
+        transition: background-color 0.3s;
+        outline-style: solid;
+        outline-width: 3px;
+        outline-color: var(--context-menu);
+        z-index: 999; /* Very high z-index */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    /* .task-options:hover .context-menu,
+    .context-menu:hover {
+        display: block;
+    } */
+
+    .context-menu-item {
+        padding: 12px 20px;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background-color 0.2s;
+        font-size: 15px;
+    }
+
+    .context-menu-item:hover {
+        background-color: var(--item-hover);
+    }
+
+    /* Custom Checkbox styling */
+    .custom-checkbox {
+        position: relative;
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
+
+    /* Hide the default checkbox */
+    .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    /* Create custom circular checkbox */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        background-color: rgb(220, 216, 216);
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+
+    /* On hover */
+    .custom-checkbox:hover .checkmark {
+        background-color: var(--checkbox-hover, rgba(66, 63, 63, 0.733));
+    }
+    /* When the checkbox is checked */
+    .custom-checkbox input:checked ~ .checkmark {
+        background-color: var(--checkbox-checked, #43c447);
+        opacity: 1;
+        animation: fill 0.10s ease-in-out, scale 0.7s ease-in-out, rotate 0.6s ease-in-out;
+        animation-iteration-count: 1;
+    }
+
+    @keyframes fill {
+        100% {
+            box-shadow: inset 0px 0px 0px 30px #43c447;
+        }
+    }
+
+    @keyframes scale {
+        0%, 100% {
+            transform: none;
+        }
+        50% {
+            transform: scale3d(1.1, 1.1, 1);
+        }
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .custom-checkbox:hover input:checked ~ .checkmark {
+        background-color: var(--checkbox-ticked-hover, #0e7712);
+    }
+
+    /* Create the checkmark/indicator */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: block;
+        left: 7px;
+        top: 3px;
+        width: 6px;
+        height: 12px;
+        border: solid rgba(128, 128, 128, 0.768); 
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg) scale(0); /* Start with scale 0 */
+        transform-origin: center; /* Set the origin to the center */
+        transition: transform 0.3s ease-in-out; /* Smooth transition */
+    }
+
+    /* Show the checkmark when checked with rotation and scaling effect */
+    .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+        border-color: white;
+        opacity: 1;
+        transform: rotate(45deg) scale(1); /* Scale up to normal size */
+        animation: checkmark-pop 0.7s ease-in-out; /* Add pop animation */
+        animation-iteration-count: 1;;
+    }
+
+    /* Keyframes for the pop effect */
+    @keyframes checkmark-pop {
+        0% {
+            transform: scale(0) rotate(0deg);
+        }
+        50% {
+            transform: scale(1.05) rotate(20deg);
+        }
+        100% {
+            transform: scale(1) rotate(45deg);
+        }
+    }
+
+    .custom-checkbox .checkmark:after {
+        left: 7.13px;
+        top: 3px;
+        width: 6px;
+        height: 12px;
+        border: solid rgb(255, 255, 255);
+        border-width: 0 3px 3px 0; /* Increased border width for a thicker checkmark */
+        transform: rotate(40deg);
+    }
+
+    /* ==========================================================================
+    ABOUT SECTION
+    ========================================================================== */
+    .about-container {
+        width: 1000px;
+        background-color: var(--container-bg);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        margin: 40px 0;
+        transition: background-color 0.3s;
+        border: 1px solid var(--dashboard-outline);
+        border-radius: 30px;
+        border-width: 3px;
+    }
+
+    .about-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--text-color);
+        transition: color 0.3s;
+    }
+
+    .about-section {
+        margin-bottom: 30px;
+    }
+
+    /* About cards (Why, How, Benefits) */
+    .about-card {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .about-card-text {
+        font-family: Helvetica;
+        line-height: 25px;
+        color: var(--text-color);
+        transition: color 0.3s;
+        font-weight: 500;
+        padding-left: 20px;
+    }
+
+    .about-card:not(:last-child) {
+        margin-bottom: 30px;
+    }
+
+
+    .about-card-icon img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .about-card-content {
+        flex-grow: 1;
+    }
+
+    .about-card-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: var(--text-color);
+        transition: color 0.3s;
+        padding-left: 20px;
+    }
+
+    /* ==========================================================================
+    MODALS (Task, Activity, Sign In)
+    ========================================================================== */
+    /* Base modal styles */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.726);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+    }
+
+    /* Delete Confirmation Modal Styles */
+    .modal-message {
+        color: var(--text-color);
+        margin-bottom: 25px;
+        font-size: 16px;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    #delete-confirm {
+        background-color: #ff3333; /* Red color for delete button */
+    }
+
+    #delete-confirm:hover {
+        background-color: #e60000; /* Darker red on hover */
+    }
+
+    .modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal-content {
+        background-color: var(--container-bg);
+        border-radius: 20px;
+        padding: 30px;
+        width: 400px;
+        max-width: 90%;
+        transition: background-color 0.3s;
+    }
+
+    .modal-title {
+        color: white;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    .modal-input {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--text-input);
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        font-size: 16px;
+        margin-bottom: 30px;
+        box-shadow: none;
+        transition: box-shadow 0.3s ease;
+        margin-top: 20px;
+
+    }
+
+    .modal-input:focus {
+        outline: none; 
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.2); 
+        transition: box-shadow 0.3s ease;
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: flex-end;
+        gap: 15px;
+    }
+
+    .modal-btn {
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .modal-cancel {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: var(--text-color);
+        transition: color 0.3s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    }
+
+    .modal-confirm {
+        background-color: var(--timer-bg);
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    }
+
+    .modal-cancel:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .modal-confirm:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .modal-confirm {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .modal-incomp {
+        background-color: var(--timer-bg);
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    #total-time {
+        line-height: 1;
+        font-size: 30px;
+    }
+
+    #total-time.stat-value {
+        padding-top: 10px;
+    }
+
+    /* Activity modal specific styles */
+    .activity-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: var(--text-color);
+    }
+
+    .activity-statistics {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        gap: 15px; /* Gap between cards */
+    }
+
+    .stat-card {
+        background-color: rgba(70, 60, 150, 0.5); /* Slightly lighter purple */
+        border-radius: 15px;
+        padding: 20px;
+        width: 700px; /* Width of each stat card */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+    }
+    .stat-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 15px; /* Space between content and label */
+        justify-content: center; /* Center the content horizontally */
+
+    }
+
+    .stat-icon {
+        margin-right: 15px; /* Space between icon and value */
+        display: flex;
+        align-items: center;
+    }
+
+    .stat-value {
+        font-size: 64px;
+        font-weight: bold;
+        color: var(--text-color);
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: 16px;
+        color: var(--text-color);
+        opacity: 0.8;
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Activity modal content wider */
+    .activity-modal-content {
+        width: 750px;
+        max-width: 100%;
+        background-color: #483D8B; /* Dark slate blue */
+        border-radius: 20px;
+        padding: 30px;
+    }
+
+    /* Sign In Modal Styles */
+    .signin-modal-content {
+        width: 450px;
+        max-width: 90%;
+        padding: 30px;
+    }
+
+    .signin-header {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+    }
+
+    .signin-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .signin-logo-img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+    }
+
+    .signin-title {
+        font-size: 24px;
+        color: var(--text-color);
+    }
+
+    .signin-methods {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signin-google-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--text-input);
+        background-color: transparent;
+        color: var(--text-color);
+        cursor: pointer;
+        font-size: 16px;
+        margin-bottom: 20px;
+        transition: background-color 0.2s;
+    }
+
+    .signin-google-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .google-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Sign in divider */
+    .signin-divider {
+        display: flex;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+    .divider-line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .divider-text {
+        padding: 0 15px;
+        color: var(--text-color);
+        opacity: 0.7;
+        font-size: 14px;
+    }
+
+    /* Sign in form */
+    .signin-email-form {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 25px;
+    }
+
+    .signin-label {
+        margin-bottom: 8px;
+        color: var(--text-color);
+    }
+
+    .signin-input {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid var(--text-input);
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .signin-submit-btn {
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        background-color: var(--task-bg);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .signin-submit-btn:hover {
+        background-color: var(--task-hover);
+    }
+
+    .signin-login-prompt {
+        text-align: center;
+        color: var(--text-color);
+        font-size: 14px;
+    }
+
+    .login-link {
+        color: var(--text-color);
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    /* ==========================================================================
+    MODAL FOR COMPLETION AND BREAKS
+    ========================================================================== */
+
+    /* Completion Modal Styles */
+    #completion-modal .modal-content {
+        text-align: center;
+        padding: 40px;
+    }
+
+    #completion-modal .modal-title {
+        color: #43c447;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    #completion-modal .modal-message {
+        color: var(--text-color);
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    #continue-btn {
+        background-color: #43c447;
+        color: white;
+        padding: 12px 24px;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+    #continue-btn:hover {
+        background-color: #3aa83e;
+        transform: translateY(-2px);
+    }
+
+    /* Break Completion Modal Styles */
+    #break-completion-modal .modal-content {
+        text-align: center;
+        padding: 40px;
+    }
+
+    #break-completion-modal .modal-title {
+        color: #ff5722; /* Orange color for breaks */
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    #break-completion-modal .modal-message {
+        color: var(--text-color);
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    #back-to-work-btn {
+        background-color: #ff5722;
+        color: white;
+        padding: 12px 24px;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+    #back-to-work-btn:hover {
+        background-color: #e64a19;
+        transform: translateY(-2px);
+    }
+
+    /* Settings Modal Styles */
+    #settings-modal .modal-content {
+        width: 450px;
+        max-width: 90%;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .settings-options {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    .setting-option {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .setting-option label {
+        color: var(--text-color);
+        font-size: 16px;
+    }
+
+    .setting-option input {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid var(--text-input);
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        font-size: 16px;
+        width: 100%;
+    }
+
+        /* ==========================================================================
+    CUSTOM SCROLLBARS
+    ========================================================================== */
+    /* Main scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 6px;
+        background: var(--scrollbar); 
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--scrollbar-thumb); 
+        border-radius: 7px;
+    }
+
+    /* Task container scrollbar styling */
+    .tasks-container::-webkit-scrollbar {
+        width: 7px;
+        background: transparent;
+    }
+
+    .tasks-container::-webkit-scrollbar-thumb {
+        background: var(--task-bg); 
+        border-radius: 15px;
+    }
+
+    .tasks-container::-webkit-scrollbar-thumb:hover {
+        background: var(--task-hover);
+    }
+

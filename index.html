@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="Icon.png">
+    <title>Pomora Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="path/to/style.css">
+</head>
+<body>
+    <div class="timer-adjust-buttons">
+        <button class="adjust-btn" id="remove-30s" title="Remove 30 seconds"><i class="fa fa-minus"></i> 30s</button>
+        <button class="adjust-btn" id="remove-4m" title="Remove 4 minutes"><i class="fa fa-minus"></i> 4m</button>
+    </div>
+
+    <div class="section" id="dashboard-section">
+        <div class="container">
+            <nav>
+                <div class="logo-section">
+                    <a href="#" class="logo">
+                        <img src="Icon.png" alt="Pomora logo">
+                        Pomora
+                    </a>
+
+                    <div class="language-selector">
+                        <div class="language-display">
+                            <img src="language_images/US.png" alt="US Flag" class="language-flag" id="selected-flag">
+                            <span>EN</span>
+                        </div>
+                        <div class="language-options">
+                            <div class="language-option" data-lang="en">
+                                <img src="language_images/US.png" alt="US Flag" class="language-flag">
+                                English
+                            </div>
+                            <div class="language-option" data-lang="es">
+                                <img src="language_images/ES.png" alt="Spain Flag" class="language-flag">
+                                Español
+                            </div>
+                            <div class="language-option" data-lang="jp">
+                                <img src="language_images/JP.png" alt="Japan Flag" class="language-flag">
+                                日本語
+                            </div>
+                            <div class="language-option" data-lang="cn">
+                                <img src="language_images/CN.png" alt="China Flag" class="language-flag">
+                                中文
+                            </div>
+                            <div class="language-option" data-lang="ph">
+                                <img src="language_images/PH.png" alt="Philippines Flag" class="language-flag">
+                                Filipino
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="theme-toggle">
+                        <img src="theme_images/moon.png" alt="Moon Icon" class="toggle-icon" id="dark-icon">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="theme-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <img src="theme_images/sun.png" alt="Sun Icon" class="toggle-icon" id="light-icon">
+                    </div>
+                </div>
+            
+                <div class="nav-links">
+                    <a class="button" href="#about-section">About</a>
+                    <a class="button" href="#" id="signin-link">Sign In</a>
+                    <a class="button" href="#" id="activity-link">Activity</a>
+                </div>
+            </nav>
+
+            <div class="main-content">
+                <div class="timer-section">
+                    <div class="timer-card">
+                        <a><i class="fa fa-gear rotate-scale-up" id="gear-btn"></i></a>
+                        <div class="timer-title">Pomodoro Timer</div>
+                        <div class="timer-mode-buttons">
+                            <button class="timer-mode-btn active" id="pomodoro-btn">Pomodoro</button>
+                            <button class="timer-mode-btn" id="short-break-btn">Short Break</button>
+                            <button class="timer-mode-btn" id="long-break-btn">Long Break</button>
+                        </div>
+                        <div class="timer-display" id="timer">25:00</div>
+                        <div class="timer-buttons">
+                            <button class="timer-btn" id="start-btn">Start</button>
+                            <button class="timer-btn" id="pause-btn">Pause</button>
+                            <button class="timer-btn" id="reset-btn" disabled>Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tasks-section">
+                    <div class="tasks-card">
+                        <div class="tasks-header">
+                            <div class="tasks-title" style="user-select: none;">Tasks List</div>
+                        </div>
+                        <div class="tasks-container" id="tasks-container"></div>
+                        <div class="task-container-line"></div>
+                        <div class="add-task-container">
+                            <button class="add-task-btn" id="add-task-btn">
+                                <span class="add-icon">+</span>
+                                Add Task
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="about-section">
+        <div class="about-container">
+            <h2 class="about-title">About the Pomodoro Technique</h2>
+            <div class="about-section">
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <img src="vector_icons/about3.png" alt="Why Pomodoro" id="why-icon" style="width: 100px;height: 100px;">
+                    </div>
+                    <div class="about-card-content">
+                        <h3 class="about-card-title">Why Pomodoro Technique?</h3>
+                        <p class="about-card-text">
+                            The Pomodoro Technique is a time management method that improves productivity, focus, and mental 
+                            agility and efficiency. It was developed by Francesco Cirillo in the late 1980s and has been proven 
+                            to be simple, short, finite chunks (typically 25 minutes) to complete larger tasks.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <img src="vector_icons/about2.png" alt="How to use" id="how-icon" style="width: 100px;height: 100px;">
+                    </div>
+                    <div class="about-card-content">
+                        <h3 class="about-card-title">How to use the Pomodoro Technique</h3>
+                        <p class="about-card-text">
+                            1. Choose a task you want to complete.<br>
+                            2. Set the timer for 25 minutes and begin work on the task.<br>
+                            3. When the timer rings, take a short 5-minute break.<br>
+                            4. Repeat this process four times, then take a longer 15-30 minute break.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <img src="vector_icons/about1.png" alt="Benefits" id="benefits-icon" style="width: 100px; height: 100px;">
+                    </div>
+                    <div class="about-card-content">
+                        <h3 class="about-card-title">Benefits of Pomodoro</h3>
+                        <p class="about-card-text">
+                            • <b>Increased Focus:</b> Helps eliminate distractions by asking clear time limits.<br>
+                            • <b>Prevents Burnout:</b> Regular breaks keep your mind fresh and reduce fatigue.<br>
+                            • <b>Enhances Productivity:</b> Encourages deep work by focusing on one task at a time.<br>
+                            • <b>Tracks Progress:</b> Pomodoro allows you to measure how much time you spent on tasks.<br>
+                            • <b>Mindful Prioritization:</b> The structured workflow prevents you from delaying important tasks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <h3 class="modal-title" id="modal-title" style="user-select: none">Add New Task</h3>
+            <input type="text" class="modal-input" id="task-input" style="user-select: none" placeholder="Enter task..." autocomplete="off">
+            <div class="modal-buttons"> 
+                <button class="modal-btn modal-cancel" id="modal-cancel">Cancel</button>
+                <button class="modal-btn modal-confirm modal-incomp" id="modal-confirm">Add Task</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="delete-modal">
+        <div class="modal-content">
+            <h3 class="modal-title" style="user-select: none">Delete Task</h3>
+            <p class="modal-message">Are you sure you want to delete this task?</p>
+            <div class="modal-buttons"> 
+                <button class="modal-btn modal-cancel" id="delete-cancel">Cancel</button>
+                <button class="modal-btn modal-confirm" id="delete-confirm">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="activity-modal">
+        <div class="modal-content activity-modal-content">
+            <div class="activity-header">
+                <h3 class="modal-title">Your Pomodoro Activity</h3>
+                <button class="close-btn" id="activity-close-btn">&times;</button>
+            </div>
+            <div class="activity-statistics">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <img src="vector_icons/pomo.png" draggable="false" alt="Pomodoro Icon" style="height: 60px; width: 60px; box-shadow: #00000033;">
+                        </div>
+                        <div class="stat-value" id="total-pomodoros">12</div>
+                    </div>
+                    <div class="stat-label">Total Pomodoros</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <img src="vector_icons/tasks.png" draggable="false" alt="Tasks Icon" style="height: 60px;width: 60px;">
+                        </div>
+                        <div class="stat-value" id="completed-tasks">8</div>
+                    </div>
+                    <div class="stat-label">Completed Tasks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-icon">
+                            <img src="vector_icons/time.png" draggable="false" alt="Clock Icon" style="height: 50px;width: 50px; margin-top: 10px;">
+                        </div>
+                        <div class="stat-value" id="total-time">5h 25m</div>
+                    </div>
+                    <div class="stat-label">Total Time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signin-modal">
+        <div class="modal-content signin-modal-content">
+            <div class="signin-header">
+                <button class="close-btn" id="signin-close-btn">&times;</button>
+            </div>
+            <div class="signin-logo">
+                <img src="Icon.png" alt="Pomodoro logo" class="signin-logo-img">
+                <h3 class="signin-title">Create account</h3>
+            </div>
+            <div class="signin-methods">
+                <button class="signin-google-btn">
+                    <img src="vector_icons/google.webp" alt="Google Icon" class="google-icon">
+                    <span>Sign up with Google</span>
+                </button>
+                <div class="signin-divider">
+                    <span class="divider-line"></span>
+                    <span class="divider-text">or sign up with email</span>
+                    <span class="divider-line"></span>
+                </div>
+                <div class="signin-email-form">
+                    <label for="email" class="signin-label">Email</label>
+                    <input type="email" id="email" class="signin-input" placeholder="Enter your email address">
+                    <button class="signin-submit-btn">Sign up</button>
+                </div>
+                <div class="signin-login-prompt">
+                    Already have an account? <a href="#" class="login-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="completion-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">Pomodoro Completed!</h3>
+            <p class="modal-message">Great job! You've completed a Pomodoro session.</p>
+            <div class="modal-buttons"> 
+                <button class="modal-btn modal-confirm" id="continue-btn">Continue to Break</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="break-completion-modal">
+        <div class="modal-content">
+            <h3 class="modal-title">Break Time Over!</h3>
+            <p class="modal-message" id="break-completion-message">Your break session has ended.</p>
+            <div class="modal-buttons"> 
+                <button class="modal-btn modal-confirm" id="back-to-work-btn">Back to Work</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Timer Settings</h3>
+                <button class="close-btn" id="settings-close-btn">&times;</button>
+            </div>
+            <div class="settings-options">
+                <div class="setting-option">
+                    <label for="pomodoro-duration">Pomodoro Duration (minutes):</label>
+                    <input type="number" id="pomodoro-duration" min="1" max="60" value="25">
+                </div>
+                <div class="setting-option">
+                    <label for="short-break-duration">Short Break Duration (minutes):</label>
+                    <input type="number" id="short-break-duration" min="1" max="30" value="5">
+                </div>
+                <div class="setting-option">
+                    <label for="long-break-duration">Long Break Duration (minutes):</label>
+                    <input type="number" id="long-break-duration" min="1" max="60" value="15">
+                </div>
+            </div>
+            <div class="modal-buttons"> 
+                <button class="modal-btn modal-cancel" id="settings-cancel">Cancel</button>
+                <button class="modal-btn modal-confirm" id="settings-save">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="translations.js"></script>
+</body>
+</html>
